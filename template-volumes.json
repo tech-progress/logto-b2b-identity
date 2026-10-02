@@ -1,0 +1,3 @@
+{
+  "Postgres": { "mountPath": "/var/lib/postgresql/data", "sizeMB": 5000 }
+}

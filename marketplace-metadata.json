@@ -1,0 +1,12 @@
+{
+  "directory": "logto-b2b-identity",
+  "name": "Logto B2B identity",
+  "category": "Authentication",
+  "description": "Logto OIDC with gated admin origin and durable PostgreSQL storage.",
+  "icon": "https://raw.githubusercontent.com/logto-io/logto/v1.44.0/packages/console/src/favicon.ico",
+  "origins": [
+    { "name": "Logto", "url": "https://logto.io" },
+    { "name": "PostgreSQL", "url": "https://www.postgresql.org" },
+    { "name": "Node.js", "url": "https://nodejs.org" }
+  ]
+}

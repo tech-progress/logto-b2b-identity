@@ -1,0 +1,37 @@
+{
+  "Postgres": {
+    "PORT": "5432",
+    "POSTGRES_DB": "logto",
+    "POSTGRES_USER": "logto",
+    "POSTGRES_PASSWORD": "${{secret(48, \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\")}}",
+    "PGDATA": "/var/lib/postgresql/data/pgdata"
+  },
+  "Logto": {
+    "PORT": "3001",
+    "ADMIN_PORT": "3002",
+    "NODE_ENV": "production",
+    "DB_HOST": "${{Postgres.RAILWAY_PRIVATE_DOMAIN}}",
+    "DB_PORT": "5432",
+    "DB_NAME": "${{Postgres.POSTGRES_DB}}",
+    "DB_USER": "${{Postgres.POSTGRES_USER}}",
+    "DB_PASSWORD": "${{Postgres.POSTGRES_PASSWORD}}",
+    "ENDPOINT": "https://${{Issuer.RAILWAY_PUBLIC_DOMAIN}}",
+    "ADMIN_ENDPOINT": "https://${{Admin.RAILWAY_PUBLIC_DOMAIN}}",
+    "TRUST_PROXY_HEADER": "1"
+  },
+  "Issuer": {
+    "PORT": "8080",
+    "GATEWAY_ROLE": "issuer",
+    "UPSTREAM_HOST": "${{Logto.RAILWAY_PRIVATE_DOMAIN}}",
+    "ENDPOINT": "${{Logto.ENDPOINT}}",
+    "ADMIN_ENDPOINT": "${{Logto.ADMIN_ENDPOINT}}"
+  },
+  "Admin": {
+    "PORT": "8080",
+    "GATEWAY_ROLE": "admin",
+    "UPSTREAM_HOST": "${{Logto.RAILWAY_PRIVATE_DOMAIN}}",
+    "ENDPOINT": "${{Logto.ENDPOINT}}",
+    "ADMIN_ENDPOINT": "${{Logto.ADMIN_ENDPOINT}}",
+    "ADMIN_GATE_PASSWORD": "${{secret(48, \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\")}}"
+  }
+}

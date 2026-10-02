@@ -1,0 +1,6 @@
+{
+  "Postgres": {},
+  "Logto": {},
+  "Issuer": { "publicPort": 8080 },
+  "Admin": { "publicPort": 8080 }
+}

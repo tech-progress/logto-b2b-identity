@@ -1,0 +1,37 @@
+{
+  "Postgres": {
+    "PORT": "Private PostgreSQL listener; no public domain or TCP proxy.",
+    "POSTGRES_DB": "Dedicated Logto database name, fixed after first initialization.",
+    "POSTGRES_USER": "Dedicated database owner for upstream schema initialization and alterations.",
+    "POSTGRES_PASSWORD": "Generated database credential. Rotating this variable alone does not change the stored PostgreSQL role password.",
+    "PGDATA": "PostgreSQL-only persistent data directory within its own volume."
+  },
+  "Logto": {
+    "PORT": "Private core listener, enforced by the wrapper as 3001.",
+    "ADMIN_PORT": "Private administrator listener, enforced as 3002; not a public route.",
+    "NODE_ENV": "Production mode; enforced by the wrapper.",
+    "DB_HOST": "PostgreSQL private hostname; wrapper builds documented DB_URL with escaped credentials.",
+    "DB_PORT": "Private database TCP port.",
+    "DB_NAME": "Dedicated database name referenced from Postgres.",
+    "DB_USER": "Database owner referenced from Postgres.",
+    "DB_PASSWORD": "Database password referenced from Postgres; never an owner account password.",
+    "ENDPOINT": "Canonical HTTPS issuer origin. Keep stable and consistent with application callbacks and Issuer gateway routing.",
+    "ADMIN_ENDPOINT": "Independent canonical HTTPS administrator origin. All administrator paths pass through the Admin gate.",
+    "TRUST_PROXY_HEADER": "Trust only the private gateways' overwritten forwarding headers; enforced by the wrapper."
+  },
+  "Issuer": {
+    "PORT": "Public issuer gateway port, independently exposed by Railway.",
+    "GATEWAY_ROLE": "Must be issuer; selects private backend port 3001 and forces the core origin.",
+    "UPSTREAM_HOST": "Private Logto hostname; never an internet or user-controlled request target.",
+    "ENDPOINT": "References Logto's canonical issuer origin for fixed Host/protocol forwarding.",
+    "ADMIN_ENDPOINT": "References Logto's administrator origin so same-origin misconfiguration fails closed."
+  },
+  "Admin": {
+    "PORT": "Public gated administrator gateway port, on its own Railway domain.",
+    "GATEWAY_ROLE": "Must be admin; selects private backend port 3002 and forces the administrator origin.",
+    "UPSTREAM_HOST": "Private Logto hostname; no public backend service domain.",
+    "ENDPOINT": "References Logto's issuer origin for independent-origin validation.",
+    "ADMIN_ENDPOINT": "References Logto's canonical administrator origin for fixed Host/protocol forwarding.",
+    "ADMIN_GATE_PASSWORD": "Generated independent operator gate secret (48 characters). Username is operator. Required BEFORE first owner creation and permanently afterward; not a Logto password."
+  }
+}
