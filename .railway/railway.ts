@@ -14,9 +14,9 @@ const defaults = JSON.parse(readFileSync(new URL("../template-defaults.json", im
 const source = { type: "github" as const, repo, branch, rootDirectory: rootDir };
 const postgresImage = "public.ecr.aws/docker/library/postgres:17.11-bookworm@sha256:91eb910c44c7ed13f7f1a4ccadaa9ca72ef14cddc04cacb6e070e48eb44731a3";
 
-export default defineRailway(ctx => {
-  const databasePassword = ctx.randomString(`logto-database-${randomBytes(32).toString("hex")}`, 24);
-  const gatePassword = ctx.randomString(`logto-gate-${randomBytes(32).toString("hex")}`, 24);
+export default defineRailway(() => {
+  const databasePassword = randomBytes(32).toString("hex");
+  const gatePassword = randomBytes(32).toString("hex");
   const data = volume("Postgres Data", { sizeMB: 5000 });
   const postgres = service("Postgres", {
     source: { image: postgresImage },

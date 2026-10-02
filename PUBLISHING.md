@@ -1,6 +1,6 @@
 # Publishing gates
 
-The current template release is `v1.0.0`. **Unpublished.** No template ID, deploy code, cloud project, or public distribution repository has been created. `marketplace-metadata.json` is a local proposal without fabricated IDs/codes. Root catalog files are deliberately unchanged by this implementation task.
+The current template release is `v1.0.1`. **Unpublished on Railway.** The sanitized standalone source is `tech-progress/logto-b2b-identity`, using `release-v1` and immutable version tags. A public repository alone does not establish selected-source access, GitHub App template qualification, a template ID/code, or a passing stored deployment. `marketplace-metadata.json` remains a local proposal without fabricated IDs/codes. Root catalog files are deliberately unchanged by this worker.
 
 ## Local contract
 
@@ -8,7 +8,7 @@ Pin Railway SDK 3.6.0 via `package-lock.json`. Set `SOURCE_REPO` to your actual 
 
 Run `npm ci --ignore-scripts`, `bash scripts/verify.sh`, and `bash scripts/smoke.sh`. They only build, render locally, or run local Docker. None invokes a Railway cloud API, authenticates, deploys, or publishes.
 
-The direct IaC definition uses `defineRailway(ctx)` and real, distinct generated secrets, not literal `${{secret(...)}}` application values. The latter are **only** interpreted later as template `defaultValue` expressions. SDK 3.6.0's `ctx.randomString` hashes labels deterministically, so labels include fresh Node `crypto.randomBytes` entropy. Native `preserveExisting: true` is declared for both secret variables; its live update behavior remains unverified. Do not print/archive a rendered graph publicly or reapply against a populated database without checking actual secret preservation. Offline contract checks validate strong/distinct rendered secrets and exact values for every nonsecret variable, but restored templates always receive the template expressions.
+The direct IaC definition uses real, distinct Node `crypto.randomBytes(32)` secrets, not the deterministic SDK helper or literal `${{secret(...)}}` application values. Expressions are **only** interpreted later as template `defaultValue` values. Native `preserveExisting: true` is declared for both authoring secrets; its live update behavior remains unverified. Do not print/archive a rendered graph publicly or reapply against a populated database without checking actual secret preservation. Offline contract checks validate strong/distinct rendered secrets and exact values for every nonsecret variable, but restored templates always receive the template expressions.
 
 ## Offline draft repair and audit
 

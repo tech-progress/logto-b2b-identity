@@ -3,6 +3,25 @@ import { test } from 'node:test';
 import { graphToEnvironmentConfig } from 'railway/iac';
 import { auditDraft, contract, renderGraph, restoreDraft } from '../scripts/template-draft.mjs';
 
+test('direct authoring secrets are independent 256-bit values with preservation intent', { skip: !process.env.SOURCE_REPO }, () => {
+  const secrets = [];
+  for (let iteration = 0; iteration < 3; iteration++) {
+    const graph = renderGraph();
+    contract(graph);
+    for (const resource of graph.resources.filter(resource => resource.type === 'service')) {
+      for (const key of ['POSTGRES_PASSWORD', 'ADMIN_GATE_PASSWORD']) {
+        const variable = resource.variables?.[key]?.value;
+        if (!variable) continue;
+        assert.ok(typeof variable.value === 'string' && /^[a-f0-9]{64}$/.test(variable.value));
+        assert.equal(variable.preserveExisting, true);
+        secrets.push(variable.value);
+      }
+    }
+  }
+  assert.equal(secrets.length, 6);
+  assert.equal(new Set(secrets).size, 6);
+});
+
 test('render and offline draft contract reject source, variable, volume and networking drift', { skip: !process.env.SOURCE_REPO }, () => {
   const desired = contract(renderGraph());
   const volumeId = 'a127cc33-fc3b-4973-a415-78c6e72c21ef';

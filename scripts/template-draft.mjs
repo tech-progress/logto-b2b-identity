@@ -46,7 +46,7 @@ export function contract(graph) {
       if ((service.name === 'Postgres' && key === 'POSTGRES_PASSWORD') || (service.name === 'Admin' && key === 'ADMIN_GATE_PASSWORD')) {
         const generated = service.variables[key].value;
         assert.equal(service.variables[key].type, 'raw', 'Native variable configuration required for generated secrets');
-        assert.ok(typeof generated.value === 'string' && /^[a-f0-9]{48}$/.test(generated.value), `${service.name}.${key}: real generated secret required`);
+        assert.ok(typeof generated.value === 'string' && /^[a-f0-9]{64}$/.test(generated.value), `${service.name}.${key}: direct 256-bit cryptographic secret required`);
         assert.equal(generated.preserveExisting, true, `${service.name}.${key}: existing secret preservation required`);
         generatedSecrets.push(generated.value);
       } else {
