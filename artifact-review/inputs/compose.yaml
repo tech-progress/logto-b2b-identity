@@ -1,0 +1,98 @@
+services:
+  postgres:
+    image: public.ecr.aws/docker/library/postgres:17.11-bookworm@sha256:91eb910c44c7ed13f7f1a4ccadaa9ca72ef14cddc04cacb6e070e48eb44731a3
+    environment:
+      POSTGRES_DB: logto
+      POSTGRES_USER: logto
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set a generated database password}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U logto -d logto']
+      interval: 3s
+      timeout: 3s
+      retries: 40
+    networks: [storage]
+  logto:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+      PORT: "3001"
+      ADMIN_PORT: "3002"
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_NAME: logto
+      DB_USER: logto
+      DB_PASSWORD: ${POSTGRES_PASSWORD:?Set a generated database password}
+      ENDPOINT: ${ENDPOINT:-http://127.0.0.1:18420}
+      ADMIN_ENDPOINT: ${ADMIN_ENDPOINT:-http://127.0.0.1:18421}
+      ALLOW_INSECURE_LOCALHOST: ${ALLOW_INSECURE_LOCALHOST:-1}
+      TRUST_PROXY_HEADER: "1"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:3001/api/status').then(response=>process.exit(response.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 3s
+      timeout: 5s
+      retries: 60
+      start_period: 60s
+    networks: [storage, identity]
+  issuer:
+    build:
+      context: .
+      dockerfile: gateway.Dockerfile
+    environment:
+      PORT: "8080"
+      GATEWAY_ROLE: issuer
+      UPSTREAM_HOST: logto
+      ENDPOINT: ${ENDPOINT:-http://127.0.0.1:18420}
+      ADMIN_ENDPOINT: ${ADMIN_ENDPOINT:-http://127.0.0.1:18421}
+      ALLOW_INSECURE_LOCALHOST: ${ALLOW_INSECURE_LOCALHOST:-1}
+    ports: ["127.0.0.1:18420:8080"]
+    depends_on:
+      logto:
+        condition: service_healthy
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:8080/healthz').then(response=>process.exit(response.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 3s
+      timeout: 5s
+      retries: 40
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    networks: [identity]
+  admin:
+    build:
+      context: .
+      dockerfile: gateway.Dockerfile
+    environment:
+      PORT: "8080"
+      GATEWAY_ROLE: admin
+      UPSTREAM_HOST: logto
+      ENDPOINT: ${ENDPOINT:-http://127.0.0.1:18420}
+      ADMIN_ENDPOINT: ${ADMIN_ENDPOINT:-http://127.0.0.1:18421}
+      ALLOW_INSECURE_LOCALHOST: ${ALLOW_INSECURE_LOCALHOST:-1}
+      ADMIN_GATE_PASSWORD: ${ADMIN_GATE_PASSWORD:?Set a generated gate password of at least 32 characters}
+    ports: ["127.0.0.1:18421:8080"]
+    depends_on:
+      logto:
+        condition: service_healthy
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:8080/healthz').then(response=>process.exit(response.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 3s
+      timeout: 5s
+      retries: 40
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    networks: [identity]
+networks:
+  storage:
+    internal: true
+  identity: {}
+volumes:
+  postgres-data: {}

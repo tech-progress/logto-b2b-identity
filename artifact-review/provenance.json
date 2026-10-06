@@ -1,0 +1,946 @@
+{
+  "review_date": "2026-10-06",
+  "scope": "Finite source-only recipe review for future 1.0.2; no assembled image distribution authorization or security certification.",
+  "existing_recipe_source": "https://github.com/tech-progress/logto-b2b-identity/tree/9d468c9c8bddbb0b3ef01a4fcd236dbf6f5f0554",
+  "existing_recipe_version": "1.0.1",
+  "future_recipe_version": "1.0.2 (not released at this pre-freeze review snapshot)",
+  "upstream_source_commit": "79e9e3b0d9f505260d09c80d8a015e56fbc0ec01",
+  "upstream_tag_object": "19694f74460e3b4a1ac8fb6c09cbbbd22ccfb5cd",
+  "upstream_tag_peels_to_image_revision": true,
+  "cached_source_matches_exact_commit": [
+    "LICENSE",
+    "Dockerfile",
+    "pnpm-lock.yaml"
+  ],
+  "node_grant_matches_cached_images": true,
+  "ua_parser_grant_matches_cached_image": true,
+  "recipe_inputs": [
+    {
+      "file": "Dockerfile",
+      "sha256": "abff3ba46e8897f96c48056e16634ba3c43081afb25c8dc5308b51bde77f4e01"
+    },
+    {
+      "file": "gateway.Dockerfile",
+      "sha256": "a9e4439fc6187f27179b8e5bb08d3ee73fb01c77629eb2f33a629c2d0cb8a74f"
+    },
+    {
+      "file": "compose.yaml",
+      "sha256": "8bef2fd468e9c760ed4bf8e704a824fee8acd5b6e352a2379da8e78042e9ab59"
+    },
+    {
+      "file": "package.json",
+      "sha256": "02af66447e37c0c884933bc842bc9efe699a6b554bdd8080325b7698fd2ac8f3"
+    },
+    {
+      "file": "package-lock.json",
+      "sha256": "ca00bd5bd689ab9bfe987d9f3b36f4a89d2e74bed6af87aab946f0bf8430f30c"
+    },
+    {
+      "file": "runtime/backend.mjs",
+      "sha256": "c246568fac56c125a12de9464d336257799d3968fad2a9f2270147db26ecce42"
+    },
+    {
+      "file": "runtime/config.mjs",
+      "sha256": "078fbb22adda7fbdaa43170d3f1c1374bcedc25442b1ec1b8dae9641677fa613"
+    },
+    {
+      "file": "runtime/gateway.mjs",
+      "sha256": "43c621ae178182dca1f4b295b55a75e587d57d239cb1ae776f80ac1199b9b785"
+    },
+    {
+      "file": "LICENSE",
+      "sha256": "685997f6d16dec479774b6cee597cd982838ab661f5aecce3aa5a5ba679f2064"
+    }
+  ],
+  "cached_image_inputs": [
+    {
+      "role": "logto",
+      "reference": "ghcr.io/logto-io/logto@sha256:75c0767d7c907c79066c77bd1919d0598b17278d0f2c14c4520fa1d1ba4589b8",
+      "image_id": "sha256:75c0767d7c907c79066c77bd1919d0598b17278d0f2c14c4520fa1d1ba4589b8",
+      "architecture": "amd64",
+      "os": "linux",
+      "created": "2026-09-30T07:24:50.344169136Z",
+      "labels": {
+        "org.opencontainers.image.created": "2026-09-30T07:17:42.263Z",
+        "org.opencontainers.image.description": "🧑‍🚀 Authentication and authorization infrastructure for SaaS and AI apps, built on OIDC and OAuth 2.1 with multi-tenancy, SSO, and RBAC.",
+        "org.opencontainers.image.licenses": "MPL-2.0",
+        "org.opencontainers.image.revision": "79e9e3b0d9f505260d09c80d8a015e56fbc0ec01",
+        "org.opencontainers.image.source": "https://github.com/logto-io/logto",
+        "org.opencontainers.image.title": "logto",
+        "org.opencontainers.image.url": "https://github.com/logto-io/logto",
+        "org.opencontainers.image.version": "1.44.0"
+      },
+      "environment": [
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "NODE_VERSION=22.23.3",
+        "YARN_VERSION=1.22.22",
+        "LOGTO_OSS_SURVEY_ENDPOINT=https://logto-oss-survey-prod.svhd.workers.dev",
+        "PRIVATE_KEY_ROTATION_GRACE_PERIOD=0"
+      ],
+      "inspected_without_starting": true,
+      "own_container_removed": true
+    },
+    {
+      "role": "gateway-node",
+      "reference": "node:22.23.3-alpine3.23@sha256:baf676f7d0e552f3231945c2f979055ca121bce128c152f7a34e6bd1728b1c5a",
+      "image_id": "sha256:baf676f7d0e552f3231945c2f979055ca121bce128c152f7a34e6bd1728b1c5a",
+      "architecture": "amd64",
+      "os": "linux",
+      "created": "2026-09-23T21:08:52.219977539Z",
+      "labels": null,
+      "environment": [
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "NODE_VERSION=22.23.3",
+        "YARN_VERSION=1.22.22"
+      ],
+      "inspected_without_starting": true,
+      "own_container_removed": true
+    },
+    {
+      "role": "postgres",
+      "reference": "public.ecr.aws/docker/library/postgres@sha256:91eb910c44c7ed13f7f1a4ccadaa9ca72ef14cddc04cacb6e070e48eb44731a3",
+      "image_id": "sha256:91eb910c44c7ed13f7f1a4ccadaa9ca72ef14cddc04cacb6e070e48eb44731a3",
+      "architecture": "amd64",
+      "os": "linux",
+      "created": "2026-09-19T00:36:52.480117286Z",
+      "labels": null,
+      "environment": [
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/postgresql/17/bin",
+        "GOSU_VERSION=1.19",
+        "LANG=en_US.utf8",
+        "PG_MAJOR=17",
+        "PG_VERSION=17.11-1.pgdg12+2",
+        "PGDATA=/var/lib/postgresql/data"
+      ],
+      "inspected_without_starting": true,
+      "own_container_removed": true
+    }
+  ],
+  "wrapper": {
+    "pg": {
+      "version": "8.23.1",
+      "license": "MIT",
+      "url": "https://registry.npmjs.org/pg/-/pg-8.23.1.tgz",
+      "integrity": "sha512-aL96AHANtWjPLDOLqnhx+ngp9+UK7ETEU8VJrDCGvsSSi/mGLcWYsS6Herg7lmaBJe4uwrfqsa7gTEFaSizDoQ==",
+      "tarball_sha256": "0d7999c755c25f7c02fbd96196291148eda737bb91e78e4031b9ebe5ef7d7de7",
+      "notices": [
+        {
+          "name": "LICENSE",
+          "archive_path": "package/LICENSE",
+          "sha256": "192b8f5c96900f04a1271dec39688655d7416c1c6ea84a508e18b50d2b6751f3",
+          "local_match": true
+        }
+      ],
+      "development_only": false
+    },
+    "pg-cloudflare": {
+      "version": "1.4.1",
+      "license": "MIT",
+      "url": "https://registry.npmjs.org/pg-cloudflare/-/pg-cloudflare-1.4.1.tgz",
+      "integrity": "sha512-6PQbsFWZcp9EmJEwy5cGQ2La+AMWpP46lgbb8X+U/XsHIUweYDNCpeuKck5RxL2MdVFi7krbbEi5nX4Zh7JhrQ==",
+      "tarball_sha256": "7a3b140775e885d245bcd0c08f60cc5d726449a4dfabda6a31537b7411ef38cc",
+      "notices": [
+        {
+          "name": "LICENSE",
+          "archive_path": "package/LICENSE",
+          "sha256": "192b8f5c96900f04a1271dec39688655d7416c1c6ea84a508e18b50d2b6751f3",
+          "local_match": true
+        }
+      ],
+      "development_only": false
+    },
+    "pg-connection-string": {
+      "version": "2.14.1",
+      "license": "MIT",
+      "url": "https://registry.npmjs.org/pg-connection-string/-/pg-connection-string-2.14.1.tgz",
+      "integrity": "sha512-qR3kGNPBLpCNtz0evbKA0Y/MRFXwSSdT+pTJvYp/bXTcReZbvX1kzF0IyTc1QnxqF7AZbOeBhNL8R5mYQZV/MA==",
+      "tarball_sha256": "22f69d9711c971d8b66eb78474073ba7f47f27bb69a4347c13cb8ab7c75dfaff",
+      "notices": [
+        {
+          "name": "LICENSE",
+          "archive_path": "package/LICENSE",
+          "sha256": "2244b5486c4427001b6756a87b9a297d427c111dcc3ba64a097492a8979c23d0",
+          "local_match": true
+        }
+      ],
+      "development_only": false
+    },
+    "pg-int8": {
+      "version": "1.0.1",
+      "license": "ISC",
+      "url": "https://registry.npmjs.org/pg-int8/-/pg-int8-1.0.1.tgz",
+      "integrity": "sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==",
+      "tarball_sha256": "f010d48974a96814e841edbb6fc6096385574610714d2a50e99811170c365e92",
+      "notices": [
+        {
+          "name": "LICENSE",
+          "archive_path": "package/LICENSE",
+          "sha256": "4e8e87ccdfc7e4b47fd89015f78468aa53b6bf43ab6e6e12d43e8f55294911de",
+          "local_match": true
+        }
+      ],
+      "development_only": false
+    },
+    "pg-pool": {
+      "version": "3.14.0",
+      "license": "MIT",
+      "url": "https://registry.npmjs.org/pg-pool/-/pg-pool-3.14.0.tgz",
+      "integrity": "sha512-gKtPkFdQPU3DksooVLi9LsjZxrsBUZIpa+7aVx+LV5pNh0KzP4Zleud2po+ConrxbuXGBJ6Hfer6hdgpIBpBaw==",
+      "tarball_sha256": "0b0b8729c09d5eaa059313c9c3d11efc8907441386bbf86ccc57e1298c6ce71a",
+      "notices": [
+        {
+          "name": "LICENSE",
+          "archive_path": "package/LICENSE",
+          "sha256": "4f15ee7fc2a72082859d7e0d12dfa4bcdd70b1c744ad3850d07780730ac08557",
+          "local_match": true
+        }
+      ],
+      "development_only": false
+    },
+    "pg-protocol": {
+      "version": "1.16.1",
+      "license": "MIT",
+      "url": "https://registry.npmjs.org/pg-protocol/-/pg-protocol-1.16.1.tgz",
+      "integrity": "sha512-p9VOFMiHB/ZbJATetbg+99PxssTVSQRnyuPSQ67mN1+1KBOjZaZ83ZQzltnxPhJwSsC3nwVjJ10DVJlerbFzLg==",
+      "tarball_sha256": "e1315b9dc839a029109e3a521c1dd1d9c7265722fdbc50d27ff5f7274f70732f",
+      "notices": [
+        {
+          "name": "LICENSE",
+          "archive_path": "package/LICENSE",
+          "sha256": "192b8f5c96900f04a1271dec39688655d7416c1c6ea84a508e18b50d2b6751f3",
+          "local_match": true
+        }
+      ],
+      "development_only": false
+    },
+    "pg-types": {
+      "version": "2.2.0",
+      "license": "MIT",
+      "url": "https://registry.npmjs.org/pg-types/-/pg-types-2.2.0.tgz",
+      "integrity": "sha512-qTAAlrEsl8s4OiEQY69wDvcMIdQN6wdz5ojQiOy6YRMuynxenON0O5oCpJI6lshc6scgAY8qvJ2On/p+CXY0GA==",
+      "tarball_sha256": "c4804fd058140c32f8fda78883ad45dee3eaa4fd9e9127b6eb659fefe51981bd",
+      "notices": [
+        {
+          "name": "README-license.txt",
+          "archive_path": "package/README.md",
+          "sha256": "2c8a6e1b7782f0ca241792868af742f1c281c9661f59ec36c9acf40381c86645",
+          "readme_sha256": "ecda9bca71d3f0cee4e600d1dd2bef336213f39ef2e8fca6a1a1c1c8723f643a",
+          "local_match": true,
+          "extraction": "Verbatim license section after heading; leading blank lines removed."
+        }
+      ],
+      "development_only": false
+    },
+    "pgpass": {
+      "version": "1.0.5",
+      "license": "MIT",
+      "url": "https://registry.npmjs.org/pgpass/-/pgpass-1.0.5.tgz",
+      "integrity": "sha512-FdW9r/jQZhSeohs1Z3sI1yxFQNFvMcnmfuj4WBMUTxOrAyLMaTcE1aAMBiTlbMNaXvBCQuVi0R7hd8udDSP7ug==",
+      "tarball_sha256": "ff794c956186430afd600b5bc4500f3f0faf34b62be6ff98494f4c7f4a6d8597",
+      "notices": [
+        {
+          "name": "README-license.txt",
+          "archive_path": "package/README.md",
+          "sha256": "492e56ee92e47d39ca91d60ef75f55b1104678fab8f09838206b61b43136e211",
+          "readme_sha256": "62549909404b5a0dcb2b4b74c9a930baf8095dbcfa1543c4ffc79378acd22b57",
+          "local_match": true,
+          "extraction": "Verbatim license section after heading; leading blank lines removed."
+        }
+      ],
+      "development_only": false
+    },
+    "postgres-array": {
+      "version": "2.0.0",
+      "license": "MIT",
+      "url": "https://registry.npmjs.org/postgres-array/-/postgres-array-2.0.0.tgz",
+      "integrity": "sha512-VpZrUqU5A69eQyW2c5CA1jtLecCsN2U/bD6VilrFDWq5+5UIEVO7nazS3TEcHf1zuPYO/sqGvUvW62g86RXZuA==",
+      "tarball_sha256": "dbf1035c777631d4b0a4b5c035b1f6247dd923db6b2ea115b93b1eabb172b3a0",
+      "notices": [
+        {
+          "name": "license",
+          "archive_path": "package/license",
+          "sha256": "f057f36739d53d228a746de4440c1e0c644ecde06d6beab45337d39c9d12a393",
+          "local_match": true
+        }
+      ],
+      "development_only": false
+    },
+    "postgres-bytea": {
+      "version": "1.0.1",
+      "license": "MIT",
+      "url": "https://registry.npmjs.org/postgres-bytea/-/postgres-bytea-1.0.1.tgz",
+      "integrity": "sha512-5+5HqXnsZPE65IJZSMkZtURARZelel2oXUEO8rH83VS/hxH5vv1uHquPg5wZs8yMAfdv971IU+kcPUczi7NVBQ==",
+      "tarball_sha256": "0395e34ecb9945b0003132af6e11463ec7ec8f17fb5cbdbccc5a822bd6807d96",
+      "notices": [
+        {
+          "name": "license",
+          "archive_path": "package/license",
+          "sha256": "f057f36739d53d228a746de4440c1e0c644ecde06d6beab45337d39c9d12a393",
+          "local_match": true
+        }
+      ],
+      "development_only": false
+    },
+    "postgres-date": {
+      "version": "1.0.7",
+      "license": "MIT",
+      "url": "https://registry.npmjs.org/postgres-date/-/postgres-date-1.0.7.tgz",
+      "integrity": "sha512-suDmjLVQg78nMK2UZ454hAG+OAW+HQPZ6n++TNDUX+L0+uUlLywnoxJKDou51Zm+zTCjrCl0Nq6J9C5hP9vK/Q==",
+      "tarball_sha256": "a67a8d90e7b8f64041a6f425b102b27a3e86d5854ace7e9414a890912f3adb59",
+      "notices": [
+        {
+          "name": "license",
+          "archive_path": "package/license",
+          "sha256": "f057f36739d53d228a746de4440c1e0c644ecde06d6beab45337d39c9d12a393",
+          "local_match": true
+        }
+      ],
+      "development_only": false
+    },
+    "postgres-interval": {
+      "version": "1.2.0",
+      "license": "MIT",
+      "url": "https://registry.npmjs.org/postgres-interval/-/postgres-interval-1.2.0.tgz",
+      "integrity": "sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==",
+      "tarball_sha256": "e67563626b30aa7d22caf930e38529bb137476146a11eaaa0bb1e07c0a2413b1",
+      "notices": [
+        {
+          "name": "license",
+          "archive_path": "package/license",
+          "sha256": "f057f36739d53d228a746de4440c1e0c644ecde06d6beab45337d39c9d12a393",
+          "local_match": true
+        }
+      ],
+      "development_only": false
+    },
+    "railway": {
+      "version": "3.6.0",
+      "license": "MIT",
+      "url": "https://registry.npmjs.org/railway/-/railway-3.6.0.tgz",
+      "integrity": "sha512-jgpSoHDY/4JJrTdjXHASeRd41Kd4FyLfaZIDLBUj+Hh41T17fHTzlYcCsimH6aomYyrJC9SskbUE2gmh/QIufQ==",
+      "tarball_sha256": "4a810991484bf7a795458d2aefb90cebec5bfff3843094c189528c77cd4bea25",
+      "notices": [
+        {
+          "name": "LICENSE",
+          "archive_path": "package/LICENSE",
+          "sha256": "50f082c2b42429ccbd6a804c95df4c822555ffe39a3f4ffeba6f11f562f897ac",
+          "local_match": true
+        }
+      ],
+      "development_only": true
+    },
+    "split2": {
+      "version": "4.2.0",
+      "license": "ISC",
+      "url": "https://registry.npmjs.org/split2/-/split2-4.2.0.tgz",
+      "integrity": "sha512-UcjcJOWknrNkF6PLX83qcHM6KHgVKNkV62Y8a5uYDVv9ydGQVwAHMKqHdJje1VTWpljG0WYpCDhrCdAOYH4TWg==",
+      "tarball_sha256": "e0061e7f042fc5ff6dcda8afb66619757d92ab1ff514a28a5904f2ebde27bf54",
+      "notices": [
+        {
+          "name": "LICENSE",
+          "archive_path": "package/LICENSE",
+          "sha256": "c372ef2fa1dfcb124ed807609751e75e3a009f108c5724916b489288fcb88a0c",
+          "local_match": true
+        }
+      ],
+      "development_only": false
+    },
+    "xtend": {
+      "version": "4.0.2",
+      "license": "MIT",
+      "url": "https://registry.npmjs.org/xtend/-/xtend-4.0.2.tgz",
+      "integrity": "sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==",
+      "tarball_sha256": "bd22a01d43c799be7bb53dfa9e775b132045e39525e51efb977528a00041ba48",
+      "notices": [
+        {
+          "name": "LICENSE",
+          "archive_path": "package/LICENSE",
+          "sha256": "82e67379203d5794e7c44549847d8d64ae6904591381682360470898bd306821",
+          "local_match": true
+        }
+      ],
+      "development_only": false
+    }
+  },
+  "grants": [
+    {
+      "component": "Logto",
+      "version": "1.44.0",
+      "file": "artifact-review/grants/logto-1.44.0.MPL-2.0.txt",
+      "original_sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
+      "captured_sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
+      "original_bytes": 16725,
+      "normalization": "none",
+      "provenance": "https://raw.githubusercontent.com/logto-io/logto/79e9e3b0d9f505260d09c80d8a015e56fbc0ec01/LICENSE"
+    },
+    {
+      "component": "Node.js with bundled third-party notices",
+      "version": "22.23.3",
+      "file": "artifact-review/grants/node-22.23.3.LICENSE.txt",
+      "original_sha256": "c738ae413cf561f174e34f6961f8ca458aae2369a73640dda6234c629b98bcc4",
+      "captured_sha256": "c738ae413cf561f174e34f6961f8ca458aae2369a73640dda6234c629b98bcc4",
+      "original_bytes": 145485,
+      "normalization": "none",
+      "provenance": "https://raw.githubusercontent.com/nodejs/node/v22.23.3/LICENSE"
+    },
+    {
+      "component": "PostgreSQL",
+      "version": "17.11",
+      "file": "artifact-review/grants/postgres-17.11.COPYRIGHT.txt",
+      "original_sha256": "3d6af92ff8a4c2cdf69afb1cf44edea727922f5cd0cf8b5f72b11cdecac8fdfd",
+      "captured_sha256": "3d6af92ff8a4c2cdf69afb1cf44edea727922f5cd0cf8b5f72b11cdecac8fdfd",
+      "original_bytes": 1198,
+      "normalization": "none",
+      "provenance": "https://raw.githubusercontent.com/postgres/postgres/REL_17_11/COPYRIGHT"
+    },
+    {
+      "component": "PostgreSQL Debian package notices",
+      "version": "17.11-1.pgdg12+2",
+      "file": "artifact-review/grants/postgres-17.11.debian-copyright.txt",
+      "original_sha256": "afcc052a946b4117667527211b4ca303f07044f5585222f4c8f577e0764b2123",
+      "captured_sha256": "afcc052a946b4117667527211b4ca303f07044f5585222f4c8f577e0764b2123",
+      "original_bytes": 12934,
+      "normalization": "none",
+      "provenance": {
+        "image": "public.ecr.aws/docker/library/postgres@sha256:91eb910c44c7ed13f7f1a4ccadaa9ca72ef14cddc04cacb6e070e48eb44731a3",
+        "path": "/usr/share/doc/postgresql-17/copyright"
+      }
+    },
+    {
+      "component": "UAParser.js",
+      "version": "2.0.10",
+      "file": "artifact-review/grants/ua-parser-js-2.0.10.AGPL.txt",
+      "original_sha256": "677a9f8c04196ea6cea9a1da75b9e3923d3e82c82de010d6081a163afdcefd76",
+      "captured_sha256": "acaf679f5da370e78f0d08141c6126c93a07f3430f3af6603972733b6ec22352",
+      "original_bytes": 32095,
+      "normalization": "Added one terminal LF; original content unchanged.",
+      "provenance": "https://raw.githubusercontent.com/faisalman/ua-parser-js/2.0.10/LICENSE.md"
+    },
+    {
+      "component": "UAParser.js source copyright header",
+      "version": "2.0.10",
+      "file": "artifact-review/grants/ua-parser-js-2.0.10.copyright.txt",
+      "captured_sha256": "690f78fb31f4bf2a18edbc912c147fffcc7c17c97dbb5d1784f756038b7787d3",
+      "provenance": "https://raw.githubusercontent.com/faisalman/ua-parser-js/2.0.10/src/main/ua-parser.js",
+      "original_source_sha256": "10c532cc720a41b4315f00f1a9834a11ef5a40f5635d0adc73580786c90a0065",
+      "extraction": "Verbatim initial copyright/license header, before jshint comment."
+    },
+    {
+      "component": "Logto OIDC provider fork",
+      "version": "9.11.3; commit 513c523c0e68ee6112da8c871cce86204a136163",
+      "file": "artifact-review/grants/oidc-provider-513c523.MIT.txt",
+      "original_sha256": "4cede26713cb397575e3dcf844b098ad3a879e6688899b1be0c26b205403e810",
+      "captured_sha256": "4cede26713cb397575e3dcf844b098ad3a879e6688899b1be0c26b205403e810",
+      "original_bytes": 1079,
+      "normalization": "none",
+      "provenance": "https://raw.githubusercontent.com/logto-io/node-oidc-provider/513c523c0e68ee6112da8c871cce86204a136163/LICENSE.md"
+    },
+    {
+      "component": "node-forge",
+      "version": "1.4.0",
+      "file": "artifact-review/grants/node-forge-1.4.0.LICENSE.txt",
+      "original_sha256": "f63ff0e4e239244aa79280da2dd4811a0469e5e201caf5cbc0d97c3a1dff8e82",
+      "captured_sha256": "f63ff0e4e239244aa79280da2dd4811a0469e5e201caf5cbc0d97c3a1dff8e82",
+      "original_bytes": 17972,
+      "normalization": "none",
+      "provenance": {
+        "image": "ghcr.io/logto-io/logto@sha256:75c0767d7c907c79066c77bd1919d0598b17278d0f2c14c4520fa1d1ba4589b8",
+        "path": "/etc/logto/node_modules/.pnpm/node-forge@1.4.0/node_modules/node-forge/LICENSE",
+        "upstream_repository": {
+          "type": "git",
+          "url": "https://github.com/digitalbazaar/forge"
+        }
+      }
+    },
+    {
+      "component": "hash-wasm",
+      "version": "4.11.0",
+      "file": "artifact-review/grants/hash-wasm-4.11.0.LICENSE.txt",
+      "original_sha256": "c14dea172f72f2714284a0ac2ab1b00b5352a01409d58255a46227ffc541debd",
+      "captured_sha256": "c14dea172f72f2714284a0ac2ab1b00b5352a01409d58255a46227ffc541debd",
+      "original_bytes": 1630,
+      "normalization": "none",
+      "provenance": {
+        "image": "ghcr.io/logto-io/logto@sha256:75c0767d7c907c79066c77bd1919d0598b17278d0f2c14c4520fa1d1ba4589b8",
+        "path": "/etc/logto/node_modules/.pnpm/hash-wasm@4.11.0/node_modules/hash-wasm/LICENSE",
+        "upstream_repository": {
+          "type": "git",
+          "url": "git+https://github.com/Daninet/hash-wasm.git"
+        }
+      }
+    },
+    {
+      "component": "samlify",
+      "version": "2.13.1",
+      "file": "artifact-review/grants/samlify-2.13.1.LICENSE.txt",
+      "original_sha256": "fe03ce2897df46fb97dfd04ddd9c7f0c54a634f17497f70830c6f3c69f2c5839",
+      "captured_sha256": "fe03ce2897df46fb97dfd04ddd9c7f0c54a634f17497f70830c6f3c69f2c5839",
+      "original_bytes": 1085,
+      "normalization": "none",
+      "provenance": {
+        "image": "ghcr.io/logto-io/logto@sha256:75c0767d7c907c79066c77bd1919d0598b17278d0f2c14c4520fa1d1ba4589b8",
+        "path": "/etc/logto/node_modules/.pnpm/samlify@2.13.1/node_modules/samlify/LICENSE",
+        "upstream_repository": {
+          "url": "https://github.com/tngan/samlify",
+          "type": "git"
+        }
+      }
+    },
+    {
+      "component": "koa",
+      "version": "2.16.4",
+      "file": "artifact-review/grants/koa-2.16.4.LICENSE.txt",
+      "original_sha256": "16943a6ac79711e26289640dcca989be857059b938380b118bca5afc1ea4e7d7",
+      "captured_sha256": "16943a6ac79711e26289640dcca989be857059b938380b118bca5afc1ea4e7d7",
+      "original_bytes": 1079,
+      "normalization": "none",
+      "provenance": {
+        "image": "ghcr.io/logto-io/logto@sha256:75c0767d7c907c79066c77bd1919d0598b17278d0f2c14c4520fa1d1ba4589b8",
+        "path": "/etc/logto/node_modules/.pnpm/koa@2.16.4/node_modules/koa/LICENSE",
+        "upstream_repository": "koajs/koa"
+      }
+    },
+    {
+      "component": "jose",
+      "version": "5.9.6",
+      "file": "artifact-review/grants/jose-5.9.6.LICENSE.txt",
+      "original_sha256": "8078b0829d6c3e9ecde2f003e1966e4cad3efc6e7a640efbab0313cc166b1af1",
+      "captured_sha256": "8078b0829d6c3e9ecde2f003e1966e4cad3efc6e7a640efbab0313cc166b1af1",
+      "original_bytes": 1079,
+      "normalization": "none",
+      "provenance": {
+        "image": "ghcr.io/logto-io/logto@sha256:75c0767d7c907c79066c77bd1919d0598b17278d0f2c14c4520fa1d1ba4589b8",
+        "path": "/etc/logto/node_modules/.pnpm/jose@5.9.6/node_modules/jose/LICENSE.md",
+        "upstream_repository": "panva/jose"
+      }
+    },
+    {
+      "component": "@logto/cloud",
+      "version": "0.2.5-b618bc1",
+      "file": "artifact-review/grants/logto-cloud-0.2.5-b618bc1.LICENSE.txt",
+      "original_sha256": "48255018b41fc0e965b1115af7e6779bc218bb8a6747d561da800d5022622aa2",
+      "captured_sha256": "48255018b41fc0e965b1115af7e6779bc218bb8a6747d561da800d5022622aa2",
+      "original_bytes": 3860,
+      "normalization": "none",
+      "provenance": {
+        "image": "ghcr.io/logto-io/logto@sha256:75c0767d7c907c79066c77bd1919d0598b17278d0f2c14c4520fa1d1ba4589b8",
+        "package_path": "/etc/logto/node_modules/.pnpm/@logto+cloud@0.2.5-b618bc1_zod@3.24.3/node_modules/@logto/cloud",
+        "upstream_repository": null
+      }
+    },
+    {
+      "component": "posthog-js",
+      "version": "1.268.6",
+      "file": "artifact-review/grants/posthog-js-1.268.6.LICENSE.txt",
+      "original_sha256": "a3f86c7ac54e89e50df3f0944fd14ec8bb23d4350721fc6f59db0558d0d160b0",
+      "captured_sha256": "84c6943bc1643d0e07e0085dead941a7d17fa2065a0f574de288beecd2e0b9a3",
+      "original_bytes": 13288,
+      "normalization": "Added one terminal LF; original content unchanged.",
+      "provenance": {
+        "image": "ghcr.io/logto-io/logto@sha256:75c0767d7c907c79066c77bd1919d0598b17278d0f2c14c4520fa1d1ba4589b8",
+        "package_path": "/etc/logto/node_modules/.pnpm/posthog-js@1.268.6/node_modules/posthog-js/lib",
+        "upstream_repository": "https://github.com/PostHog/posthog-js"
+      }
+    },
+    {
+      "component": "spawndamnit",
+      "version": "3.0.1",
+      "file": "artifact-review/grants/spawndamnit-3.0.1.LICENSE.txt",
+      "original_sha256": "aac99045d4e36ab3b1e2914337620963b56cbac53de280c94f29261a22ab5b0f",
+      "captured_sha256": "aac99045d4e36ab3b1e2914337620963b56cbac53de280c94f29261a22ab5b0f",
+      "original_bytes": 1084,
+      "normalization": "none",
+      "provenance": {
+        "image": "ghcr.io/logto-io/logto@sha256:75c0767d7c907c79066c77bd1919d0598b17278d0f2c14c4520fa1d1ba4589b8",
+        "package_path": "/etc/logto/node_modules/.pnpm/spawndamnit@3.0.1/node_modules/spawndamnit",
+        "upstream_repository": "https://github.com/thejameskyle/spawndamnit"
+      }
+    },
+    {
+      "component": "npm",
+      "version": "10.9.9",
+      "file": "artifact-review/grants/npm-10.9.9.LICENSE.txt",
+      "original_sha256": "7610d223851f421d315df5e77974f1c68a04b97e02060e5bbbcf13d95e3ca257",
+      "captured_sha256": "7610d223851f421d315df5e77974f1c68a04b97e02060e5bbbcf13d95e3ca257",
+      "original_bytes": 9742,
+      "normalization": "none",
+      "provenance": {
+        "image": "node:22.23.3-alpine3.23@sha256:baf676f7d0e552f3231945c2f979055ca121bce128c152f7a34e6bd1728b1c5a",
+        "path": "/usr/local/lib/node_modules/npm/LICENSE",
+        "upstream_repository": "https://github.com/npm/cli/tree/v10.9.9"
+      }
+    },
+    {
+      "component": "pg",
+      "version": "8.23.1",
+      "file": "artifact-review/grants/pg-8.23.1.LICENSE.txt",
+      "original_sha256": "192b8f5c96900f04a1271dec39688655d7416c1c6ea84a508e18b50d2b6751f3",
+      "captured_sha256": "192b8f5c96900f04a1271dec39688655d7416c1c6ea84a508e18b50d2b6751f3",
+      "original_bytes": 1077,
+      "normalization": "none",
+      "provenance": {
+        "tarball": "https://registry.npmjs.org/pg/-/pg-8.23.1.tgz",
+        "integrity": "sha512-aL96AHANtWjPLDOLqnhx+ngp9+UK7ETEU8VJrDCGvsSSi/mGLcWYsS6Herg7lmaBJe4uwrfqsa7gTEFaSizDoQ==",
+        "archive_path": "package/LICENSE",
+        "extraction": null
+      }
+    },
+    {
+      "component": "pg-cloudflare",
+      "version": "1.4.1",
+      "file": "artifact-review/grants/pg-cloudflare-1.4.1.LICENSE.txt",
+      "original_sha256": "192b8f5c96900f04a1271dec39688655d7416c1c6ea84a508e18b50d2b6751f3",
+      "captured_sha256": "192b8f5c96900f04a1271dec39688655d7416c1c6ea84a508e18b50d2b6751f3",
+      "original_bytes": 1077,
+      "normalization": "none",
+      "provenance": {
+        "tarball": "https://registry.npmjs.org/pg-cloudflare/-/pg-cloudflare-1.4.1.tgz",
+        "integrity": "sha512-6PQbsFWZcp9EmJEwy5cGQ2La+AMWpP46lgbb8X+U/XsHIUweYDNCpeuKck5RxL2MdVFi7krbbEi5nX4Zh7JhrQ==",
+        "archive_path": "package/LICENSE",
+        "extraction": null
+      }
+    },
+    {
+      "component": "pg-connection-string",
+      "version": "2.14.1",
+      "file": "artifact-review/grants/pg-connection-string-2.14.1.LICENSE.txt",
+      "original_sha256": "2244b5486c4427001b6756a87b9a297d427c111dcc3ba64a097492a8979c23d0",
+      "captured_sha256": "85747ad4bba34e96e5055af5994796ec2a8525b4cecb14bc1bb257199dc29566",
+      "original_bytes": 1082,
+      "normalization": "Added one terminal LF; original content unchanged.",
+      "provenance": {
+        "tarball": "https://registry.npmjs.org/pg-connection-string/-/pg-connection-string-2.14.1.tgz",
+        "integrity": "sha512-qR3kGNPBLpCNtz0evbKA0Y/MRFXwSSdT+pTJvYp/bXTcReZbvX1kzF0IyTc1QnxqF7AZbOeBhNL8R5mYQZV/MA==",
+        "archive_path": "package/LICENSE",
+        "extraction": null
+      }
+    },
+    {
+      "component": "pg-int8",
+      "version": "1.0.1",
+      "file": "artifact-review/grants/pg-int8-1.0.1.LICENSE.txt",
+      "original_sha256": "4e8e87ccdfc7e4b47fd89015f78468aa53b6bf43ab6e6e12d43e8f55294911de",
+      "captured_sha256": "4e8e87ccdfc7e4b47fd89015f78468aa53b6bf43ab6e6e12d43e8f55294911de",
+      "original_bytes": 750,
+      "normalization": "none",
+      "provenance": {
+        "tarball": "https://registry.npmjs.org/pg-int8/-/pg-int8-1.0.1.tgz",
+        "integrity": "sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==",
+        "archive_path": "package/LICENSE",
+        "extraction": null
+      }
+    },
+    {
+      "component": "pg-pool",
+      "version": "3.14.0",
+      "file": "artifact-review/grants/pg-pool-3.14.0.LICENSE.txt",
+      "original_sha256": "4f15ee7fc2a72082859d7e0d12dfa4bcdd70b1c744ad3850d07780730ac08557",
+      "captured_sha256": "4f15ee7fc2a72082859d7e0d12dfa4bcdd70b1c744ad3850d07780730ac08557",
+      "original_bytes": 1073,
+      "normalization": "none",
+      "provenance": {
+        "tarball": "https://registry.npmjs.org/pg-pool/-/pg-pool-3.14.0.tgz",
+        "integrity": "sha512-gKtPkFdQPU3DksooVLi9LsjZxrsBUZIpa+7aVx+LV5pNh0KzP4Zleud2po+ConrxbuXGBJ6Hfer6hdgpIBpBaw==",
+        "archive_path": "package/LICENSE",
+        "extraction": null
+      }
+    },
+    {
+      "component": "pg-protocol",
+      "version": "1.16.1",
+      "file": "artifact-review/grants/pg-protocol-1.16.1.LICENSE.txt",
+      "original_sha256": "192b8f5c96900f04a1271dec39688655d7416c1c6ea84a508e18b50d2b6751f3",
+      "captured_sha256": "192b8f5c96900f04a1271dec39688655d7416c1c6ea84a508e18b50d2b6751f3",
+      "original_bytes": 1077,
+      "normalization": "none",
+      "provenance": {
+        "tarball": "https://registry.npmjs.org/pg-protocol/-/pg-protocol-1.16.1.tgz",
+        "integrity": "sha512-p9VOFMiHB/ZbJATetbg+99PxssTVSQRnyuPSQ67mN1+1KBOjZaZ83ZQzltnxPhJwSsC3nwVjJ10DVJlerbFzLg==",
+        "archive_path": "package/LICENSE",
+        "extraction": null
+      }
+    },
+    {
+      "component": "pg-types",
+      "version": "2.2.0",
+      "file": "artifact-review/grants/pg-types-2.2.0.README-license.txt.txt",
+      "original_sha256": "2c8a6e1b7782f0ca241792868af742f1c281c9661f59ec36c9acf40381c86645",
+      "captured_sha256": "2c8a6e1b7782f0ca241792868af742f1c281c9661f59ec36c9acf40381c86645",
+      "original_bytes": 1083,
+      "normalization": "none",
+      "provenance": {
+        "tarball": "https://registry.npmjs.org/pg-types/-/pg-types-2.2.0.tgz",
+        "integrity": "sha512-qTAAlrEsl8s4OiEQY69wDvcMIdQN6wdz5ojQiOy6YRMuynxenON0O5oCpJI6lshc6scgAY8qvJ2On/p+CXY0GA==",
+        "archive_path": "package/README.md",
+        "extraction": "Verbatim license section after heading; leading blank lines removed."
+      }
+    },
+    {
+      "component": "pgpass",
+      "version": "1.0.5",
+      "file": "artifact-review/grants/pgpass-1.0.5.README-license.txt.txt",
+      "original_sha256": "492e56ee92e47d39ca91d60ef75f55b1104678fab8f09838206b61b43136e211",
+      "captured_sha256": "492e56ee92e47d39ca91d60ef75f55b1104678fab8f09838206b61b43136e211",
+      "original_bytes": 1061,
+      "normalization": "none",
+      "provenance": {
+        "tarball": "https://registry.npmjs.org/pgpass/-/pgpass-1.0.5.tgz",
+        "integrity": "sha512-FdW9r/jQZhSeohs1Z3sI1yxFQNFvMcnmfuj4WBMUTxOrAyLMaTcE1aAMBiTlbMNaXvBCQuVi0R7hd8udDSP7ug==",
+        "archive_path": "package/README.md",
+        "extraction": "Verbatim license section after heading; leading blank lines removed."
+      }
+    },
+    {
+      "component": "postgres-array",
+      "version": "2.0.0",
+      "file": "artifact-review/grants/postgres-array-2.0.0.license.txt",
+      "original_sha256": "f057f36739d53d228a746de4440c1e0c644ecde06d6beab45337d39c9d12a393",
+      "captured_sha256": "f057f36739d53d228a746de4440c1e0c644ecde06d6beab45337d39c9d12a393",
+      "original_bytes": 1111,
+      "normalization": "none",
+      "provenance": {
+        "tarball": "https://registry.npmjs.org/postgres-array/-/postgres-array-2.0.0.tgz",
+        "integrity": "sha512-VpZrUqU5A69eQyW2c5CA1jtLecCsN2U/bD6VilrFDWq5+5UIEVO7nazS3TEcHf1zuPYO/sqGvUvW62g86RXZuA==",
+        "archive_path": "package/license",
+        "extraction": null
+      }
+    },
+    {
+      "component": "postgres-bytea",
+      "version": "1.0.1",
+      "file": "artifact-review/grants/postgres-bytea-1.0.1.license.txt",
+      "original_sha256": "f057f36739d53d228a746de4440c1e0c644ecde06d6beab45337d39c9d12a393",
+      "captured_sha256": "f057f36739d53d228a746de4440c1e0c644ecde06d6beab45337d39c9d12a393",
+      "original_bytes": 1111,
+      "normalization": "none",
+      "provenance": {
+        "tarball": "https://registry.npmjs.org/postgres-bytea/-/postgres-bytea-1.0.1.tgz",
+        "integrity": "sha512-5+5HqXnsZPE65IJZSMkZtURARZelel2oXUEO8rH83VS/hxH5vv1uHquPg5wZs8yMAfdv971IU+kcPUczi7NVBQ==",
+        "archive_path": "package/license",
+        "extraction": null
+      }
+    },
+    {
+      "component": "postgres-date",
+      "version": "1.0.7",
+      "file": "artifact-review/grants/postgres-date-1.0.7.license.txt",
+      "original_sha256": "f057f36739d53d228a746de4440c1e0c644ecde06d6beab45337d39c9d12a393",
+      "captured_sha256": "f057f36739d53d228a746de4440c1e0c644ecde06d6beab45337d39c9d12a393",
+      "original_bytes": 1111,
+      "normalization": "none",
+      "provenance": {
+        "tarball": "https://registry.npmjs.org/postgres-date/-/postgres-date-1.0.7.tgz",
+        "integrity": "sha512-suDmjLVQg78nMK2UZ454hAG+OAW+HQPZ6n++TNDUX+L0+uUlLywnoxJKDou51Zm+zTCjrCl0Nq6J9C5hP9vK/Q==",
+        "archive_path": "package/license",
+        "extraction": null
+      }
+    },
+    {
+      "component": "postgres-interval",
+      "version": "1.2.0",
+      "file": "artifact-review/grants/postgres-interval-1.2.0.license.txt",
+      "original_sha256": "f057f36739d53d228a746de4440c1e0c644ecde06d6beab45337d39c9d12a393",
+      "captured_sha256": "f057f36739d53d228a746de4440c1e0c644ecde06d6beab45337d39c9d12a393",
+      "original_bytes": 1111,
+      "normalization": "none",
+      "provenance": {
+        "tarball": "https://registry.npmjs.org/postgres-interval/-/postgres-interval-1.2.0.tgz",
+        "integrity": "sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==",
+        "archive_path": "package/license",
+        "extraction": null
+      }
+    },
+    {
+      "component": "railway",
+      "version": "3.6.0",
+      "file": "artifact-review/grants/railway-3.6.0.LICENSE.txt",
+      "original_sha256": "50f082c2b42429ccbd6a804c95df4c822555ffe39a3f4ffeba6f11f562f897ac",
+      "captured_sha256": "50f082c2b42429ccbd6a804c95df4c822555ffe39a3f4ffeba6f11f562f897ac",
+      "original_bytes": 1070,
+      "normalization": "none",
+      "provenance": {
+        "tarball": "https://registry.npmjs.org/railway/-/railway-3.6.0.tgz",
+        "integrity": "sha512-jgpSoHDY/4JJrTdjXHASeRd41Kd4FyLfaZIDLBUj+Hh41T17fHTzlYcCsimH6aomYyrJC9SskbUE2gmh/QIufQ==",
+        "archive_path": "package/LICENSE",
+        "extraction": null
+      }
+    },
+    {
+      "component": "split2",
+      "version": "4.2.0",
+      "file": "artifact-review/grants/split2-4.2.0.LICENSE.txt",
+      "original_sha256": "c372ef2fa1dfcb124ed807609751e75e3a009f108c5724916b489288fcb88a0c",
+      "captured_sha256": "c372ef2fa1dfcb124ed807609751e75e3a009f108c5724916b489288fcb88a0c",
+      "original_bytes": 764,
+      "normalization": "none",
+      "provenance": {
+        "tarball": "https://registry.npmjs.org/split2/-/split2-4.2.0.tgz",
+        "integrity": "sha512-UcjcJOWknrNkF6PLX83qcHM6KHgVKNkV62Y8a5uYDVv9ydGQVwAHMKqHdJje1VTWpljG0WYpCDhrCdAOYH4TWg==",
+        "archive_path": "package/LICENSE",
+        "extraction": null
+      }
+    },
+    {
+      "component": "xtend",
+      "version": "4.0.2",
+      "file": "artifact-review/grants/xtend-4.0.2.LICENSE.txt",
+      "original_sha256": "82e67379203d5794e7c44549847d8d64ae6904591381682360470898bd306821",
+      "captured_sha256": "82e67379203d5794e7c44549847d8d64ae6904591381682360470898bd306821",
+      "original_bytes": 1078,
+      "normalization": "none",
+      "provenance": {
+        "tarball": "https://registry.npmjs.org/xtend/-/xtend-4.0.2.tgz",
+        "integrity": "sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==",
+        "archive_path": "package/LICENSE",
+        "extraction": null
+      }
+    }
+  ],
+  "remote_primary_sources": {
+    "logto-tag": {
+      "url": "https://api.github.com/repos/logto-io/logto/git/tags/19694f74460e3b4a1ac8fb6c09cbbbd22ccfb5cd",
+      "response_url": "https://api.github.com/repos/logto-io/logto/git/tags/19694f74460e3b4a1ac8fb6c09cbbbd22ccfb5cd",
+      "sha256": "bafefa29fdad06208f1b98025660db2037946bc331410871a4405e45346162d9",
+      "bytes": 1278
+    },
+    "logto-advisories": {
+      "url": "https://api.github.com/repos/logto-io/logto/security-advisories?per_page=100",
+      "response_url": "https://api.github.com/repos/logto-io/logto/security-advisories?per_page=100",
+      "sha256": "b12fbfbfa622f3c002798e8ce94aaf5d6a96c0080564656311853cb4095b17da",
+      "bytes": 134740
+    },
+    "logto-license": {
+      "url": "https://raw.githubusercontent.com/logto-io/logto/79e9e3b0d9f505260d09c80d8a015e56fbc0ec01/LICENSE",
+      "response_url": "https://raw.githubusercontent.com/logto-io/logto/79e9e3b0d9f505260d09c80d8a015e56fbc0ec01/LICENSE",
+      "sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
+      "bytes": 16725
+    },
+    "logto-dockerfile": {
+      "url": "https://raw.githubusercontent.com/logto-io/logto/79e9e3b0d9f505260d09c80d8a015e56fbc0ec01/Dockerfile",
+      "response_url": "https://raw.githubusercontent.com/logto-io/logto/79e9e3b0d9f505260d09c80d8a015e56fbc0ec01/Dockerfile",
+      "sha256": "f5ebf0be4ca55de0750367bd268bab6d66dacd6868587cb8a144f039aa381658",
+      "bytes": 2047
+    },
+    "logto-lock": {
+      "url": "https://raw.githubusercontent.com/logto-io/logto/79e9e3b0d9f505260d09c80d8a015e56fbc0ec01/pnpm-lock.yaml",
+      "response_url": "https://raw.githubusercontent.com/logto-io/logto/79e9e3b0d9f505260d09c80d8a015e56fbc0ec01/pnpm-lock.yaml",
+      "sha256": "49453fb3033033049ec5b92e357192a2680da1c89add306f1f491e9594d7970b",
+      "bytes": 962377
+    },
+    "node-license": {
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.23.3/LICENSE",
+      "response_url": "https://raw.githubusercontent.com/nodejs/node/v22.23.3/LICENSE",
+      "sha256": "c738ae413cf561f174e34f6961f8ca458aae2369a73640dda6234c629b98bcc4",
+      "bytes": 145485
+    },
+    "node-release": {
+      "url": "https://nodejs.org/en/blog/release/v22.23.3",
+      "response_url": "https://nodejs.org/en/blog/release/v22.23.3",
+      "sha256": "076893918a7c389cec38dc418bbbd101c2550f97e19cfe9dd3e076065582a1c9",
+      "bytes": 310840
+    },
+    "pg-release": {
+      "url": "https://www.postgresql.org/docs/release/17.11/",
+      "response_url": "https://www.postgresql.org/docs/release/17.11/",
+      "sha256": "2f5e63cac1e0e3761efa50cdc5ddce50156e1c15d6ae337efd348fb5f9063b5f",
+      "bytes": 71077
+    },
+    "pg-license": {
+      "url": "https://raw.githubusercontent.com/postgres/postgres/REL_17_11/COPYRIGHT",
+      "response_url": "https://raw.githubusercontent.com/postgres/postgres/REL_17_11/COPYRIGHT",
+      "sha256": "3d6af92ff8a4c2cdf69afb1cf44edea727922f5cd0cf8b5f72b11cdecac8fdfd",
+      "bytes": 1198
+    },
+    "uaparser-license": {
+      "url": "https://raw.githubusercontent.com/faisalman/ua-parser-js/2.0.10/LICENSE.md",
+      "response_url": "https://raw.githubusercontent.com/faisalman/ua-parser-js/2.0.10/LICENSE.md",
+      "sha256": "677a9f8c04196ea6cea9a1da75b9e3923d3e82c82de010d6081a163afdcefd76",
+      "bytes": 32095
+    },
+    "uaparser-readme": {
+      "url": "https://raw.githubusercontent.com/faisalman/ua-parser-js/2.0.10/README.md",
+      "response_url": "https://raw.githubusercontent.com/faisalman/ua-parser-js/2.0.10/README.md",
+      "sha256": "be3b13234095f296c270320342b55c4111a1f0de7d1aa19cc8876be147cacd7a",
+      "bytes": 10825
+    },
+    "oidc-license": {
+      "url": "https://raw.githubusercontent.com/logto-io/node-oidc-provider/513c523c0e68ee6112da8c871cce86204a136163/LICENSE.md",
+      "response_url": "https://raw.githubusercontent.com/logto-io/node-oidc-provider/513c523c0e68ee6112da8c871cce86204a136163/LICENSE.md",
+      "sha256": "4cede26713cb397575e3dcf844b098ad3a879e6688899b1be0c26b205403e810",
+      "bytes": 1079
+    },
+    "recipe-package": {
+      "url": "https://raw.githubusercontent.com/tech-progress/logto-b2b-identity/9d468c9c8bddbb0b3ef01a4fcd236dbf6f5f0554/package.json",
+      "response_url": "https://raw.githubusercontent.com/tech-progress/logto-b2b-identity/9d468c9c8bddbb0b3ef01a4fcd236dbf6f5f0554/package.json",
+      "sha256": "02af66447e37c0c884933bc842bc9efe699a6b554bdd8080325b7698fd2ac8f3",
+      "bytes": 315
+    },
+    "recipe-license": {
+      "url": "https://raw.githubusercontent.com/tech-progress/logto-b2b-identity/9d468c9c8bddbb0b3ef01a4fcd236dbf6f5f0554/LICENSE",
+      "response_url": "https://raw.githubusercontent.com/tech-progress/logto-b2b-identity/9d468c9c8bddbb0b3ef01a4fcd236dbf6f5f0554/LICENSE",
+      "sha256": "685997f6d16dec479774b6cee597cd982838ab661f5aecce3aa5a5ba679f2064",
+      "bytes": 1580
+    },
+    "uaparser-source": {
+      "url": "https://raw.githubusercontent.com/faisalman/ua-parser-js/2.0.10/src/main/ua-parser.js",
+      "sha256": "10c532cc720a41b4315f00f1a9834a11ef5a40f5635d0adc73580786c90a0065",
+      "bytes": 77598
+    }
+  },
+  "additional_advisory_sources": {
+    "nodejs/node": {
+      "url": "https://api.github.com/repos/nodejs/node/security-advisories?per_page=100",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "bytes": 2,
+      "records": 0
+    },
+    "nodejs/undici": {
+      "url": "https://api.github.com/repos/nodejs/undici/security-advisories?per_page=100",
+      "sha256": "68050c8584bbac2695c27806e6992a9745333db970bc21c18766c158e343e591",
+      "bytes": 270059,
+      "records": 46
+    },
+    "koajs/koa": {
+      "url": "https://api.github.com/repos/koajs/koa/security-advisories?per_page=100",
+      "sha256": "f3ad731e6f9c8123b85e6e6af39789df17a93d5777384de48c92fbdb1bcb56eb",
+      "bytes": 30833,
+      "records": 5
+    },
+    "panva/jose": {
+      "url": "https://api.github.com/repos/panva/jose/security-advisories?per_page=100",
+      "sha256": "6eec1a51ff1cde6381cd3b66124c59bd88cb8bad0ad3f5a8954a20d638a4e43b",
+      "bytes": 28725,
+      "records": 6
+    },
+    "digitalbazaar/forge": {
+      "url": "https://api.github.com/repos/digitalbazaar/forge/security-advisories?per_page=100",
+      "sha256": "2e342a9cf6e2d2468165827c7681fe108d51e5996455d65dbe917c674c3a0e07",
+      "bytes": 86332,
+      "records": 13
+    },
+    "brianc/node-postgres": {
+      "url": "https://api.github.com/repos/brianc/node-postgres/security-advisories?per_page=100",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "bytes": 2,
+      "records": 0
+    },
+    "node-saml/xml-crypto": {
+      "url": "https://api.github.com/repos/node-saml/xml-crypto/security-advisories?per_page=100",
+      "sha256": "9e1886fdbfcc5084ba79f3b5410a2a4218e06053e4d1dea30fd498aeae62d63f",
+      "bytes": 32391,
+      "records": 4
+    },
+    "panva/node-oidc-provider": {
+      "url": "https://api.github.com/repos/panva/node-oidc-provider/security-advisories?per_page=100",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "bytes": 2,
+      "records": 0
+    },
+    "logto-io/node-oidc-provider": {
+      "url": "https://api.github.com/repos/logto-io/node-oidc-provider/security-advisories?per_page=100",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "bytes": 2,
+      "records": 0
+    }
+  }
+}

@@ -4,5 +4,6 @@
 !.env.example
 node_modules
 artifacts
+.verification
 FINDINGS.md
 *.dump

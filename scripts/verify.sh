@@ -4,10 +4,10 @@ root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 : "${SOURCE_REPO:?Set SOURCE_REPO to your actual accessible owner/repository for the local render}"
 for file in Dockerfile gateway.Dockerfile compose.yaml package.json package-lock.json .railway/railway.ts \
   .env.example .gitignore .dockerignore VERSION CHANGELOG.md README.md MARKETPLACE.md PUBLISHING.md SUPPORT.md \
-  UPGRADE.md LICENSE_REVIEW.md FINDINGS.md marketplace-metadata.json template-defaults.json template-descriptions.json \
+  UPGRADE.md LICENSE_REVIEW.md marketplace-metadata.json template-defaults.json template-descriptions.json \
   template-networking.json template-volumes.json runtime/backend.mjs runtime/config.mjs runtime/gateway.mjs \
   scripts/smoke.sh scripts/verify.sh scripts/restore-template-draft.sh scripts/audit-template.sh scripts/template-draft.mjs \
-  tests/gateway.test.mjs tests/template.test.mjs; do
+  tests/gateway.test.mjs tests/template.test.mjs tests/docs.test.mjs scripts/verify-docs.mjs; do
   test -f "${root}/${file}" || { echo "Missing ${file}" >&2; exit 1; }
 done
 version="$(<"${root}/VERSION")"
@@ -43,5 +43,6 @@ if find "${root}" -path '*/node_modules' -prune -o -type f \( -name .env -o -nam
   echo "Local secret or backup file found inside the template" >&2; exit 1
 fi
 (cd "${root}" && npm test)
+(cd "${root}" && node scripts/verify-docs.mjs)
 echo "PASS: local IaC exact source/root, pinned dependencies, permanent gate, private backend, DB-only volume, metadata, and drift tests."
 echo "Run bash scripts/smoke.sh separately for the actual isolated Docker build/start/restart test. No cloud operation was performed."
